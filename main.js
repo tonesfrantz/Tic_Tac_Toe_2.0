@@ -1,10 +1,12 @@
 console.log("Hi, I'm here. This is my Tic Tac Toe Logic!");
 
 // // IDEA 1:
+
 const x = 'x';
 const o = 'o';
 const y = null;
 let gameSize = 3;
+
 let ticTacToe = {
     playerInput: {},
     createGame: function (gameSize) {
@@ -118,3 +120,5 @@ console.log(ticTacToe.playerInput);
 
 // createGame(gameSize);
 // console.log(gameInput);
+
+export { gameSize };
