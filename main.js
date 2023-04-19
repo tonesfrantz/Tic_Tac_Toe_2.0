@@ -1,22 +1,15 @@
 console.log("Hi, I'm here. This is my Tic Tac Toe Logic!");
 
+import { gameSize, createButtons } from './modules/create.js';
+import { reset } from './modules/storeResults.js';
+import { buttonListener, changePlayerClass } from './modules/eventListener.js';
 // // IDEA 1:
 
 const x = 'x';
 const o = 'o';
 const y = null;
-let gameSize = 3;
 
 let ticTacToe = {
-    playerInput: {},
-    createGame: function (gameSize) {
-        let i = gameSize * gameSize;
-        console.log(i);
-        while (i > 0) {
-            this.playerInput[i] = '-';
-            i--;
-        }
-    },
     checkWin: function (playerInput) {
         if ((gameSize = 3)) {
             // Row 1
@@ -79,8 +72,11 @@ let ticTacToe = {
     },
 };
 
-console.log(ticTacToe.createGame(gameSize));
-console.log(ticTacToe.playerInput);
+// console.log(ticTacToe.createGame(4));
+// console.log(ticTacToe.playerInput);
+createButtons();
+reset.newGame();
+buttonListener(gameSize);
 
 // checkWin: function (a) {
 //     let i = 9;
@@ -120,5 +116,3 @@ console.log(ticTacToe.playerInput);
 
 // createGame(gameSize);
 // console.log(gameInput);
-
-export { gameSize };

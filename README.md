@@ -27,3 +27,14 @@ Build game in the DOM. (as opposed to HTML)
 3. Once above 2 steps complete, create player turn funciton
 4. Store win over multiple games
 5. Build DOM game and assign values to interface to interact with logic. This will be where buttons and event listeners will be creaated to assign values previously tested.
+
+**Solutions**
+H.W. for solutions
+
+-   Given an array of any size , check that the values are all the same.
+-   Given an array/object of any size (9,16 perfect square etc) how do we split the array/array into smaller arrays to check for winner
+-
+
+JEST Unit testing.
+
+-   Remind yourself about 2D arrays
