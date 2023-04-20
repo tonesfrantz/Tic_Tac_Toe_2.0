@@ -6,13 +6,33 @@ describe('all_the_same_tests', () => {
         expect(result).toBe(true);
     });
     it('shoud return false if all elemenets are NOT the same', () => {
-        const result = checkArraySame([a, x, x]);
+        const result = checkArraySame([1, 2, 1]);
         expect(result).toBe(false);
     });
     it('shoud return false if all elemenets are NOT the same2', () => {
-        const result = checkArraySame([a, x, x, x]);
+        const result = checkArraySame([1, 2, 2, 2]);
         expect(result).toBe(false);
     });
+
+    it('shoud return false if all elemenets are NOT the same3', () => {
+        const result = checkArraySame([2, 2, 2, 1]);
+        expect(result).toBe(false);
+    });
+
+    it('shoud return false if all elemenets are NOT the same4', () => {
+        const result = checkArraySame([1, 2, 2, 1]);
+        expect(result).toBe(false);
+    });
+
+    it('shoud return false if all elemenets are NOT the same with null value', () => {
+        expect(checkArraySame([2, 2, 2, null])).toBe(false);
+        expect(checkArraySame([null, 2, 2])).toBe(false);
+    });
+
+    it('shoud return true for empty array', () => {
+        expect(checkArraySame([])).toBe(true);
+    });
+    
 });
 
 describe('spilt horizontal arrays correctly', () => {
