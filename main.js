@@ -1,13 +1,14 @@
 console.log("Hi, I'm here. This is my Tic Tac Toe Logic!");
 
-import { gameSize, createButtons } from './modules/create.js';
-import { reset } from './modules/storeResults.js';
+import { createButtons } from './modules/create.js';
+import { game } from './modules/storeResults.js';
 import { buttonListener, changePlayerClass } from './modules/eventListener.js';
 // // IDEA 1:
 
 const x = 'x';
 const o = 'o';
 const y = null;
+let gameSize = 3;
 
 let ticTacToe = {
     checkWin: function (playerInput) {
@@ -74,8 +75,8 @@ let ticTacToe = {
 
 // console.log(ticTacToe.createGame(4));
 // console.log(ticTacToe.playerInput);
-createButtons();
-reset.newGame();
+createButtons(gameSize);
+game.newGame();
 buttonListener(gameSize);
 
 // checkWin: function (a) {
