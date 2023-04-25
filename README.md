@@ -41,3 +41,6 @@ JEST Unit testing.
 
 20/04/2023
 -- ProtoType/Spike and then re-built
+
+**Investigate CORS Policy and API to import random Emooji:**
+https://hagata.github.io/ranmoji/documentation_articles/getting-started/using-the-api.html

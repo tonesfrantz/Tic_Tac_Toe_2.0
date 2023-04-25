@@ -1,4 +1,4 @@
-export const game = {
+export const gameStore = {
     playerInput: [],
     newGame: function (gameSize) {
         let i = gameSize * gameSize;

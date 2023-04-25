@@ -1,14 +1,24 @@
 console.log("Hi, I'm here. This is my Tic Tac Toe Logic!");
 
-import { createButtons } from './modules/create.js';
-import { game } from './modules/storeResults.js';
-import { buttonListener, changePlayerClass } from './modules/eventListener.js';
-// // IDEA 1:
+import { createGameButtons, createPlayerSelection } from './modules/create.js';
+import { gameStore } from './modules/storeResults.js';
+import { buttonListener } from './modules/eventListener.js';
+// Store GameSize, Player, Multi-Game-Score, Current Game player Turn.
 
-const x = 'x';
-const o = 'o';
-const y = null;
-let gameSize = 3;
+let currentPlayer = '';
+const multiGameScore = {
+    gamesPlayed: 0,
+    player1: 0,
+    player2: 0,
+};
+const game = {
+    gameSize: 3,
+    player1: 'X',
+    player2: 'O',
+    currentPlayer: currentPlayer,
+};
+
+// // IDEA 1:
 
 let ticTacToe = {
     checkWin: function (playerInput) {
@@ -73,47 +83,7 @@ let ticTacToe = {
     },
 };
 
-// console.log(ticTacToe.createGame(4));
-// console.log(ticTacToe.playerInput);
-createButtons(gameSize);
-game.newGame();
-buttonListener(gameSize);
-
-// checkWin: function (a) {
-//     let i = 9;
-//     if (this.playerInput[1] == this.playerInput[2]) {
-//         console.log(`Win`);
-//     }
-//     console.log(this.playerInput[1]);
-// while (i > 0) {
-//     if (
-//         (this.playerInput[1] == this.playerInput[2]) ==
-//         this.playerInput[3]
-//     ) {
-//         console.log('WIN');
-//     }
-//     console.log(`This is position ${i}: ${this.playerInput[i]}`);
-//     i--;
-// }
-
-// console.log(ticTacToe.checkWin(this.playerInput));
-// console.log(ticTacToe.playerInput);
-// console.log(ticTacToe.createGame(gameSize));
-
-// // IDEA 2:
-
-// let gameSize = 3;
-// let gameInput = [];
-
-// let createGame = function (gameSize) {
-//     for (i = 0; i < gameSize; i++) {
-//         gameInput[i] = gameInput.from(gameSize);
-//         console.log(gameInput);
-//         // for (j = 1; j < gameSize; j++) {
-//         //     gameInput[i].push('-');
-//         // }
-//     }
-// };
-
-// createGame(gameSize);
-// console.log(gameInput);
+createGameButtons(game);
+createPlayerSelection(multiGameScore);
+gameStore.newGame();
+buttonListener(game);
