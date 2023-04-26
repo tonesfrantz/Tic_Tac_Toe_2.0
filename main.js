@@ -16,6 +16,7 @@ const game = {
     player1: 'X',
     player2: 'O',
     currentPlayer: currentPlayer,
+    playerInput: [],
 };
 
 // // IDEA 1:
@@ -85,5 +86,5 @@ let ticTacToe = {
 
 createGameButtons(game);
 createPlayerSelection(multiGameScore);
-gameStore.newGame();
+gameStore.newGame(game);
 buttonListener(game);

@@ -1,19 +1,16 @@
 export const gameStore = {
-    playerInput: [],
-    newGame: function (gameSize) {
-        let i = gameSize * gameSize;
-        console.log(i);
-        while (i > 0) {
-            this.playerInput[i] = '-';
-            i--;
+    newGame: function (game) {
+        for (let i = 0; i < game.gameSize; i++) {
+            game.playerInput[i] = [];
         }
-        for (let i = 0; i < gameSize; i++) {
-            playerInput[i] = [];
-            for (let j = 0; i < gameSize; i++) {
-                playerInput[i][j] = undefined;
+        console.log(game.playerInput);
+        for (let i = 0; i < game.gameSize; i++) {
+            game.playerInput[i] = [];
+            for (let j = 0; j < game.gameSize; j++) {
+                game.playerInput[i][j] = undefined;
             }
         }
-        console.log(this.playerInput);
+        console.log(game.playerInput);
     },
 };
 
