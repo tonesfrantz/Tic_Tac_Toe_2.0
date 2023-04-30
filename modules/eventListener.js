@@ -15,16 +15,13 @@ export const buttonListener = (game) => {
                 game.currentPlayer = game.player1;
                 currentPLayerScreen.innerHTML = `Current player: ${game.currentPlayer}`;
                 storePlayerInput(game, i);
-                console.log(game.currentPlayer);
-                console.log(game.playerInput);
             } else {
                 button.innerHTML = game.player2;
                 game.currentPlayer = game.player2;
                 currentPLayerScreen.innerHTML = `Current player: ${game.currentPlayer}`;
                 storePlayerInput(game, i);
-                console.log(game.currentPlayer);
-                console.log(game.playerInput);
             }
+            game.check_win();
         });
     }
 };
@@ -46,4 +43,6 @@ export const storePlayerInput = (game, buttonID) => {
         game.playerInput[4][buttonID - 1 - game.gameSize * 4] =
             game.currentPlayer;
     }
+    console.log(`Current player: ${game.currentPlayer}`);
+    console.log(`Player Input: ${game.playerInput}`);
 };

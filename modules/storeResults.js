@@ -3,7 +3,6 @@ export const gameStore = {
         for (let i = 0; i < game.gameSize; i++) {
             game.playerInput[i] = [];
         }
-        console.log(game.playerInput);
         for (let i = 0; i < game.gameSize; i++) {
             game.playerInput[i] = [];
             for (let j = 0; j < game.gameSize; j++) {
@@ -14,7 +13,7 @@ export const gameStore = {
     },
 };
 
-//Current Player Variable
+//Current Player Variable           -           // Complete.
 // Store Game results
 // Store PLayer Emoji
 // Store variables in the Game Object
@@ -22,4 +21,4 @@ export const gameStore = {
 // Think of state via previous game.
 // Store score over multiple games.
 
-// Keep building the Helpers test.
+// Keep building the Helpers test.   -          // Complete

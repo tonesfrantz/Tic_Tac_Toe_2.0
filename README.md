@@ -44,3 +44,6 @@ JEST Unit testing.
 
 **Investigate CORS Policy and API to import random Emooji:**
 https://hagata.github.io/ranmoji/documentation_articles/getting-started/using-the-api.html
+
+// Semantic Versioning
+// Look at code tomorrow and why it still works

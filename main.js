@@ -3,6 +3,12 @@ console.log("Hi, I'm here. This is my Tic Tac Toe Logic!");
 import { createGameButtons, createPlayerSelection } from './modules/create.js';
 import { gameStore } from './modules/storeResults.js';
 import { buttonListener } from './modules/eventListener.js';
+import {
+    checkArraySame,
+    horizontalArrays,
+    verticalArrays,
+    diagonalArrays,
+} from './helpers.js';
 // Store GameSize, Player, Multi-Game-Score, Current Game player Turn.
 
 let currentPlayer = '';
@@ -17,68 +23,16 @@ const game = {
     player2: 'O',
     currentPlayer: currentPlayer,
     playerInput: [],
-};
+    check_win: function () {
+        let horizontal = horizontalArrays(this.playerInput);
+        let vertical = verticalArrays(this.playerInput);
+        let diagonal = diagonalArrays(this.playerInput);
+        let allArrays = [...horizontal, ...vertical, ...diagonal];
 
-// // IDEA 1:
-
-let ticTacToe = {
-    checkWin: function (playerInput) {
-        if ((gameSize = 3)) {
-            // Row 1
-            if (
-                this.playerInput[1] == this.playerInput[2] &&
-                this.playerInput[3] == this.playerInput[2]
-            ) {
-                console.log('WIN1');
-            }
-            // Row 2
-            else if (
-                this.playerInput[4] == this.playerInput[5] &&
-                this.playerInput[6] == this.playerInput[5]
-            ) {
-                console.log('WIN2');
-            }
-            //Row 3
-            else if (
-                this.playerInput[7] == this.playerInput[8] &&
-                this.playerInput[9] == this.playerInput[8]
-            ) {
-                console.log('WIN3');
-            }
-            // Diagonal Top left Bottom Left
-            else if (
-                this.playerInput[1] == this.playerInput[5] &&
-                this.playerInput[9] == this.playerInput[5]
-            ) {
-                console.log('WIN4');
-            }
-            // Diagonal Top Right
-            else if (
-                this.playerInput[3] == this.playerInput[5] &&
-                this.playerInput[7] == this.playerInput[5]
-            ) {
-                console.log('WIN5');
-            }
-            // Column 1
-            else if (
-                this.playerInput[1] == this.playerInput[4] &&
-                this.playerInput[7] == this.playerInput[4]
-            ) {
-                console.log('WIN6');
-            }
-            // Column 2
-            else if (
-                this.playerInput[2] == this.playerInput[5] &&
-                this.playerInput[8] == this.playerInput[5]
-            ) {
-                console.log('WIN7');
-            }
-            // Column 3
-            else if (
-                this.playerInput[3] == this.playerInput[6] &&
-                this.playerInput[9] == this.playerInput[6]
-            ) {
-                console.log('WIN8');
+        for (let i = 0; i < allArrays.length; i++) {
+            let winner = checkArraySame(allArrays[i]);
+            if (winner == true) {
+                console.log(`Winner is: ${game.currentPlayer}`);
             }
         }
     },
