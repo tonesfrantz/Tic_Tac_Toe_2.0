@@ -2,8 +2,7 @@ export const buttonListener = (game) => {
     for (let i = 1; i <= game.gameSize * game.gameSize; i++) {
         const button = document.getElementById(i);
         const currentPLayerScreen = document.getElementById('currentPlayer');
-        //Create button id with the word button.
-        // let playerClass = document.getElementById('currentPlayer');
+
         button.addEventListener('click', () => {
             console.log(`This is button ${i}`);
             //player swap
@@ -13,12 +12,12 @@ export const buttonListener = (game) => {
             ) {
                 button.innerHTML = game.player1;
                 game.currentPlayer = game.player1;
-                currentPLayerScreen.innerHTML = `Current player: ${game.currentPlayer}`;
+                currentPLayerScreen.innerHTML = `Most Recent Move - Player: ${game.currentPlayer}`;
                 storePlayerInput(game, i);
             } else {
                 button.innerHTML = game.player2;
                 game.currentPlayer = game.player2;
-                currentPLayerScreen.innerHTML = `Current player: ${game.currentPlayer}`;
+                currentPLayerScreen.innerHTML = `Most Recent Move - Player: ${game.currentPlayer}`;
                 storePlayerInput(game, i);
             }
             game.check_win();
