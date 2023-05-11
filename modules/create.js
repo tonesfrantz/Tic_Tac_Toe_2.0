@@ -27,7 +27,7 @@ export const createGameButtons = (game) => {
 };
 
 // Module which will disappear after players selected
-export const createPlayerSelection = () => {
+export const createPlayerSelection = (game) => {
     const playerSelctionModule = document.getElementById('selectModule');
     const playerNo = 2;
     const moduleChilren = document.createElement('div');
@@ -36,7 +36,7 @@ export const createPlayerSelection = () => {
     var selectModule = `<h1 id="moduleHeader">Tic Tac Toe</h1>`;
     // Select avatar buttons
     for (let i = 1; i <= playerNo; i++) {
-        selectModule += `<div id="playerAvatar${i}" class="selectAvatar">Player ${i} Select Avatar</br>'click'</div>`;
+        selectModule += `<div id="playerAvatar${i}" class="selectAvatar">Player ${i} Select Avatar <br/>${game.player[i]}</div>`;
     }
     // Start Play
     selectModule += `<div id="startPlay" class="selectAvatar">START PLAY</div>`;
@@ -46,40 +46,62 @@ export const createPlayerSelection = () => {
     // Will also flick off the startmodule.
 };
 
-export const avatarButton = () => {
+export const avatarButton = (game) => {
     let player1RandomAvatar = document.getElementById('playerAvatar1');
     let player2RandomAvatar = document.getElementById('playerAvatar2');
+    // let emoji1 = game.player;
     player1RandomAvatar.addEventListener('click', () => {
         // Have to work on this AJAX request and the SYNTAX
-        // $.ajax({
-        //     method: 'GET',
-        //     url:
-        //         'https://api.api-ninjas.com/v1/emoji?group=' +
-        //         'smileys_emotion',
-        //     headers: {
-        //         'X-Api-Key': '6LoRkifXuzmXIuc0RtZGhw==wnVpcK2n3MQxe1NI',
-        //     },
-        //     contentType: 'application/json',
-        //     success: function (result) {
-        //         console.log(result);
-        //     },
-        //     error: function ajaxError(jqXHR) {
-        //         console.error('Error: ', jqXHR.responseText);
-        //     },
-        // });
+        let requestGroup = 'smileys_emotion';
+        let randomEmoji = Math.floor(Math.random() * 31);
+
+        fetch(`https://api.api-ninjas.com/v1/emoji?group=${requestGroup}`, {
+            method: 'GET',
+            headers: {
+                'X-Api-Key': '6LoRkifXuzmXIuc0RtZGhw==wnVpcK2n3MQxe1NI',
+            },
+        })
+            .then((response) => response.json())
+            .then((result) =>
+                console.log((game.player[1] = result[randomEmoji].character))
+            )
+            // .then((result) => (emoji1 = result[randomEmoji]))
+            .catch((error) => console.error(error));
+        player1RandomAvatar.innerHTML = `Player 1 Select Avatar <br/>${game.player[1]}`;
         console.log(`Player 1 Avatar`);
+        console.log(game.player);
     });
     player2RandomAvatar.addEventListener('click', () => {
+        // Have to work on this AJAX request and the SYNTAX
+        let requestGroup = 'animals_nature';
+        let randomEmoji = Math.floor(Math.random() * 31);
+
+        fetch(`https://api.api-ninjas.com/v1/emoji?group=${requestGroup}`, {
+            method: 'GET',
+            headers: {
+                'X-Api-Key': '6LoRkifXuzmXIuc0RtZGhw==wnVpcK2n3MQxe1NI',
+            },
+        })
+            .then((response) => response.json())
+            .then((result) =>
+                console.log((game.player[2] = result[randomEmoji].character))
+            )
+            // .then((result) => (emoji1 = result[randomEmoji]))
+            .catch((error) => console.error(error));
+        player2RandomAvatar.innerHTML = `Player 2 Select Avatar <br/>${game.player[2]}`;
+        console.log(game.player);
         console.log(`Player 2 Avatar`);
     });
 };
 
-const populateStorage = () => {
-    localStorage.setItem('gamesPlayed', 0);
-    localStorage.setItem('player1_score', 0);
-    localStorage.setItem('player2_score', 0);
-};
-populateStorage();
+// const populateStorage = (game) => {
+//     localStorage.setItem('gamesPlayed', 0);
+//     localStorage.setItem('player1_score', 0);
+//     localStorage.setItem('player2_score', 0);
+//     localStorage.setItem('player1', game.player[1]);
+//     localStorage.setItem('player2', game.player[2]);
+// };
+// populateStorage(game);
 
 // const selectAvatar = () => {
 //     const randomKeyword = [

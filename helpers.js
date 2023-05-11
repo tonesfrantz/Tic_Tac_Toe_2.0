@@ -21,10 +21,18 @@ export const checkArraySame = (array) => {
 };
 
 export const horizontalArrays = (array) => {
-    let resultHorizontal = structuredClone(array);
+    let copy = [];
+    array.forEach((elem) => {
+        if (Array.isArray(elem)) {
+            copy.push([...elem]);
+        } else {
+            copy.push(elem);
+        }
+    });
+    return copy;
+
     // Copy into a whole new structure
     // Deep copy array
-    return resultHorizontal;
 };
 
 export const verticalArrays = (array) => {

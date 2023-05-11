@@ -47,3 +47,8 @@ https://hagata.github.io/ranmoji/documentation_articles/getting-started/using-th
 
 // Semantic Versioning
 // Look at code tomorrow and why it still works
+
+//11-05-2023
+// Deep Copy
+// https://medium.com/@ziyoshams/deep-copying-javascript-arrays-4d5fc45a6e3e
+// .env and backend for hiding keys (npm dotenv) - need a proxy server(express can run within node) Would have to set up express APP which servs you html and CSS - local host 3000. (Review Project 3 from the course) - Server/WebApp/Server/Client/Folder.

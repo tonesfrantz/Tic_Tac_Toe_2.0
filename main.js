@@ -23,11 +23,17 @@ const game = {
         gamesPlayed: localStorage.getItem('gamesPlayed'),
         player1_score: localStorage.getItem('player1_score'),
         player2_score: localStorage.getItem('player2_score'),
+        player1: localStorage.getItem('plaer1'),
+        player2: localStorage.getItem('player2'),
     },
 
     gameSize: 3,
-    player1: 'X',
-    player2: 'O',
+    player: {
+        1: 'click1',
+        2: 'click2',
+    },
+    // player1: 'click',
+    // player2: 'click',
     currentPlayer: currentPlayer,
     playerInput: [],
     check_win: function () {
@@ -44,14 +50,14 @@ const game = {
                 gameCount++;
                 localStorage.setItem('gamesPlayed', gameCount);
 
-                if (this.currentPlayer == this.player1) {
+                if (this.currentPlayer == this.player[1]) {
                     console.log(`plater1 win`);
                     let player1Count = parseInt(
                         this.multiGameStore.player1_score
                     );
                     player1Count++;
                     localStorage.setItem('player1_score', player1Count);
-                } else if (this.currentPlayer == this.player2) {
+                } else if (this.currentPlayer == this.player[2]) {
                     console.log(`Player 2 Win`);
                     let player2Count = parseInt(
                         this.multiGameStore.player2_score
@@ -69,4 +75,4 @@ createPlayerSelection(game);
 gameStore.newGame(game);
 buttonListener(game);
 playAgain(game);
-avatarButton();
+avatarButton(game);
