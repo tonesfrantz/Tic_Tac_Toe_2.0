@@ -7,16 +7,16 @@ export const buttonListener = (game) => {
             console.log(`This is button ${i}`);
             //player swap
             if (
-                game.currentPlayer == game.player2 ||
+                game.currentPlayer == game.player[2] ||
                 game.currentPlayer == ''
             ) {
-                button.innerHTML = game.player1;
-                game.currentPlayer = game.player1;
+                button.innerHTML = game.player[1];
+                game.currentPlayer = game.player[1];
                 currentPLayerScreen.innerHTML = `Most Recent Move - Player: ${game.currentPlayer}`;
                 storePlayerInput(game, i);
             } else {
-                button.innerHTML = game.player2;
-                game.currentPlayer = game.player2;
+                button.innerHTML = game.player[2];
+                game.currentPlayer = game.player[2];
                 currentPLayerScreen.innerHTML = `Most Recent Move - Player: ${game.currentPlayer}`;
                 storePlayerInput(game, i);
             }

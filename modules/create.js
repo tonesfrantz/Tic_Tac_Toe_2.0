@@ -13,14 +13,14 @@ export const createGameButtons = (game) => {
     var playerDivHTML = '';
     for (let j = 1; j <= 2; j++) {
         // Assigne PLayer Icon to Scoreboard.
-        let playerIcon = '';
-        if (j == 1) {
-            playerIcon = game.player1;
-        } else {
-            playerIcon = game.player2;
-        }
+        // let playerIcon = '';
+        // if (j == 1) {
+        //     playerIcon = game.player1;
+        // } else {
+        //     playerIcon = game.player2;
+        // }
 
-        playerDivHTML += `<div id="player${j}" class="player">Player ${j} - ${playerIcon} -  Score:</div>`;
+        playerDivHTML += `<div id="player${j}" class="player">Player ${j} ${game.player[j]} -  Score: ${game.multiGameStore.score[j]}</div>`;
     }
     playerDivHTML += `</br><div id="currentPlayer">Most Recent Move${game.currentPlayer}</div>`;
     players.innerHTML = playerDivHTML;
@@ -46,10 +46,10 @@ export const createPlayerSelection = (game) => {
     // Will also flick off the startmodule.
 };
 
+// Select Emoji from the API
 export const avatarButton = (game) => {
     let player1RandomAvatar = document.getElementById('playerAvatar1');
     let player2RandomAvatar = document.getElementById('playerAvatar2');
-    // let emoji1 = game.player;
     player1RandomAvatar.addEventListener('click', () => {
         // Have to work on this AJAX request and the SYNTAX
         let requestGroup = 'smileys_emotion';
@@ -62,15 +62,20 @@ export const avatarButton = (game) => {
             },
         })
             .then((response) => response.json())
+            .then
+            //(result) => console.log(result)
+            //console.log((game.player[1] = result[randomEmoji].character))
+            ()
             .then((result) =>
                 console.log((game.player[1] = result[randomEmoji].character))
             )
-            // .then((result) => (emoji1 = result[randomEmoji]))
             .catch((error) => console.error(error));
-        player1RandomAvatar.innerHTML = `Player 1 Select Avatar <br/>${game.player[1]}`;
-        console.log(`Player 1 Avatar`);
-        console.log(game.player);
+        setTimeout(applyPlayer1, 1000);
+        function applyPlayer1() {
+            player1RandomAvatar.innerHTML = `Player 1 Select Avatar <br/>${game.player[1]}`;
+        }
     });
+
     player2RandomAvatar.addEventListener('click', () => {
         // Have to work on this AJAX request and the SYNTAX
         let requestGroup = 'animals_nature';
@@ -83,82 +88,30 @@ export const avatarButton = (game) => {
             },
         })
             .then((response) => response.json())
+            .then
+            //(result) => console.log(result)
+            //console.log((game.player[2] = result[randomEmoji].character))
+            ()
             .then((result) =>
                 console.log((game.player[2] = result[randomEmoji].character))
             )
-            // .then((result) => (emoji1 = result[randomEmoji]))
             .catch((error) => console.error(error));
-        player2RandomAvatar.innerHTML = `Player 2 Select Avatar <br/>${game.player[2]}`;
-        console.log(game.player);
-        console.log(`Player 2 Avatar`);
+        setTimeout(applyPlayer2, 1000);
+        function applyPlayer2() {
+            player2RandomAvatar.innerHTML = `Player 2 Select Avatar <br/>${game.player[2]}`;
+        }
     });
 };
 
-// const populateStorage = (game) => {
-//     localStorage.setItem('gamesPlayed', 0);
-//     localStorage.setItem('player1_score', 0);
-//     localStorage.setItem('player2_score', 0);
-//     localStorage.setItem('player1', game.player[1]);
-//     localStorage.setItem('player2', game.player[2]);
-// };
-// populateStorage(game);
-
-// const selectAvatar = () => {
-//     const randomKeyword = [
-//         'smileys_emotion',
-//         'people_body',
-//         'component',
-//         'animals_nature',
-//         'food_drink',
-//         'travel_places',
-//         'activities',
-//         'objects',
-//         'symbols',
-//         'flags',
-//     ];
-//     let length = randomKeyword.length;
-//     function getRndInteger(min, max) {
-//         return Math.floor(Math.random() * (max - min + 1)) + min;
-//     }
-//     let group = randomKeyword[getRndInteger(0, length)];
-//     $.ajax({
-//         method: 'GET',
-//         url: 'https://api.api-ninjas.com/v1/emoji?group=' + group,
-//         headers: { 'X-Api-Key': '6LoRkifXuzmXIuc0RtZGhw==wnVpcK2n3MQxe1NI' },
-//         contentType: 'application/json',
-//         success: function (result) {
-//             console.log(result);
-//         },
-//         error: function ajaxError(jqXHR) {
-//             console.error('Error: ', jqXHR.responseText);
-//         },
-//     });
-// };
-
-export const playAgain = (game) => {
-    const playAgainModule = document.getElementById('playAgain');
-    const playerNo = 2;
-    const moduleChilren = document.createElement('div');
-    moduleChilren.setAttribute('id', 'playAgainChild');
-    playAgainModule.appendChild(moduleChilren);
-    var selectModule = `<h1 id="moduleHeader">Tic Tac Toe</h1>`;
-    for (let i = 1; i <= playerNo; i++) {
-        let playerIcon = '';
-        let playerScore = '';
-        if (i == 1) {
-            playerIcon = game.player1;
-            playerScore = game.multiGameStore.player1_score;
-        } else {
-            playerIcon = game.player2;
-            playerScore = game.multiGameStore.player2_score;
-        }
-
-        selectModule += `<div id="player${i}" class="playerResults">Player ${i} - ${playerIcon} Score: ${playerScore}</div>`;
-    }
-    selectModule += `<div id="gamesPlayed" class="playerResults">Games Played: ${localStorage.getItem(
-        'gamesPlayed'
-    )}</div>`;
-    selectModule += `<div id="resetGame" class="playerResults reset">Reset</div>`;
-    selectModule += `<div id="playAgain" class="playerResults reset">Play Again</div>`;
-    moduleChilren.innerHTML = selectModule;
+export const startGame = (game) => {
+    let startButton = document.getElementById('startPlay');
+    let moduleClass = document.getElementById('selectModule');
+    let player1 = document.getElementById('player1');
+    let player2 = document.getElementById('player2');
+    startButton.addEventListener('click', () => {
+        player1.innerHTML = `Player 1 ${game.player[1]} Score: ${game.multiGameStore.score[1]}`;
+        player2.innerHTML = `Player 2 ${game.player[2]} Score: ${game.multiGameStore.score[2]}`;
+        moduleClass.style.display = 'none';
+        console.log(game.multiGameStore.score);
+    });
 };
