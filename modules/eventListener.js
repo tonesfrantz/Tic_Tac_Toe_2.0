@@ -20,7 +20,11 @@ export const buttonListener = (game) => {
                 currentPLayerScreen.innerHTML = `Most Recent Move - Player: ${game.currentPlayer}`;
                 storePlayerInput(game, i);
             }
+            game.currentPlayerToggle();
+            console.log(`Event listener Boolean ${game.playerBoolean}`);
             game.check_win();
+            // console.log(game.playerInput);
+            console.log(`Current Player: ${game.currentPlayer}`);
         });
     }
 };

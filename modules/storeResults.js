@@ -10,6 +10,8 @@ export const gameStore = {
             }
         }
         console.log(game.playerInput);
+
+        console.log(`Current Player: ${game.currentPlayer}`);
     },
 };
 
