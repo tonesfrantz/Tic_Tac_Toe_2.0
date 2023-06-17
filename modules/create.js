@@ -14,7 +14,7 @@ export const createGameButtons = (game) => {
     }
     playerDivHTML += `</br><div id="currentPlayer">Most Recent Move${game.currentPlayer}</div>`;
     players.innerHTML = playerDivHTML;
-    console.log(`playerboolean - createFunction ${game.playerBoolean}`);
+    // console.log(`playerboolean - createFunction ${game.playerBoolean}`);
     game.multiGameStoreUpdate();
 };
 
@@ -88,7 +88,7 @@ export const startGame = (game) => {
         localStorage.setItem('player2_score', 0);
         localStorage.setItem('player1', game.player[1]);
         localStorage.setItem('player2', game.player[2]);
-        localStorage.setItem('gamesPlayed', 1);
+        localStorage.setItem('gamesPlayed', 0);
         player1.innerHTML = `Player 1 ${game.player[1]} Score: ${game.multiGameStore.score[1]}`;
         player2.innerHTML = `Player 2 ${game.player[2]} Score: ${game.multiGameStore.score[2]}`;
         moduleClass.style.display = 'none';
