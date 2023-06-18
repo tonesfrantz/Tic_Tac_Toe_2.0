@@ -15,7 +15,7 @@ export const createGameButtons = (game) => {
     playerDivHTML += `</br><div id="currentPlayer">Most Recent Move${game.currentPlayer}</div>`;
     players.innerHTML = playerDivHTML;
     // console.log(`playerboolean - createFunction ${game.playerBoolean}`);
-    game.multiGameStoreUpdate();
+    // game.multiGameStoreUpdate();
 };
 
 // Module which will disappear after players selected

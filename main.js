@@ -6,6 +6,7 @@ import {
     avatarButton,
     startGame,
 } from './modules/create.js';
+import { localStorageIncrease } from './modules/localStorage.js';
 import { playAgain, playAgainButton } from './modules/playAgain.js';
 import { gameStore } from './modules/storeResults.js';
 import { buttonListener } from './modules/eventListener.js';
@@ -43,23 +44,47 @@ const game = {
         console.log(
             `Games Played BEFORE UPDATE ${this.multiGameStore.gamesPlayed}`
         );
+        console.log(
+            `Games Played Local storage BEFORE update ${localStorage.getItem(
+                'gamesPlayed'
+            )}`
+        );
         (this.multiGameStore.gamesPlayed = !localStorage.getItem('gamesPlayed')
             ? 0
             : parseInt(localStorage.getItem('gamesPlayed'))),
             console.log(
                 `Games Played AFTER UPDATE ${this.multiGameStore.gamesPlayed}`
             );
+
         console.log(`P1 BEFORE update ${this.multiGameStore.score[1]}`);
+        console.log(
+            `P1 Local storage BEFORE update ${localStorage.getItem(
+                'player1_score'
+            )}`
+        );
+
         (this.multiGameStore.score[1] = !localStorage.getItem('player1_score')
             ? 0
             : parseInt(localStorage.getItem('player1_score'))),
             console.log(`P1 AFTER update ${this.multiGameStore.score[1]}`);
-        console.log(`P2 BEFORE update ${this.multiGameStore.score[2]}`);
+        `P1 Local storage AFTER update ${localStorage.getItem(
+            'player1_score'
+        )}`;
+        console.log(`P2 Score BEFORE update ${this.multiGameStore.score[2]}`);
+        console.log(
+            `P2 Local storage BEFORE update ${localStorage.getItem(
+                'player2_score'
+            )}`
+        );
         (this.multiGameStore.score[2] = !localStorage.getItem('player2_score')
             ? 0
             : parseInt(localStorage.getItem('player2_score'))),
-            console.log(`P2 BEfore update ${this.multiGameStore.score[2]}`);
-        console.log(`P1_ICON BEFORE update ${this.multiGameStore.player1}`);
+            console.log(`P2 AFTER update ${this.multiGameStore.score[2]}`);
+        console.log(
+            `P2 Local storage AFTER update ${localStorage.getItem(
+                'player2_score'
+            )}`
+        );
         // (this.multiGameStore.player1 = !localStorage.getItem('player1')
         //     ? this.player1
         //     : localStorage.getItem('player1')),
@@ -93,11 +118,13 @@ const game = {
         let allArrays = [...horizontal, ...vertical, ...diagonal];
         // console.log(this.multiGameStore);
         let playAgainModule = document.getElementById('playAgain');
+        this.player1Plus = 0;
+        this.player2Plus = 0;
+        console.log(`CHECKWIN Game Player 1: ${this.player1Plus}`);
+        console.log(`CHECKWIN Game Player 2: ${this.player2Plus}`);
         for (let i = 0; i < allArrays.length; i++) {
             let winner = checkArraySame(allArrays[i]);
             //Removing Undefined value by restating here.
-            this.player1Plus = 0;
-            this.player2Plus = 0;
             if (winner == true) {
                 if (this.playerBoolean === false) {
                     this.player2Plus++;
@@ -116,10 +143,10 @@ const game = {
 
                 // console.log(`Gamecount AFTER applying win ${gameCount}`);
                 // console.log(game.multiGameStore);
-                createGameButtons(game);
-                buttonListener(game);
                 gameStore.newGame(game);
                 playAgain(game);
+                createGameButtons(game);
+                buttonListener(game);
                 resetPlayAgain(game);
                 playAgainModule.style.display = 'block';
                 // console.log(`After win: ${this.playerBoolean}`);
@@ -135,53 +162,6 @@ buttonListener(game);
 avatarButton(game);
 startGame(game);
 playAgainButton(game);
-
-const localStorageIncrease = (game) => {
-    // // Get stored Data
-    game.multiGameStoreUpdate();
-    let player1Count = parseInt(localStorage.getItem('player1_score'));
-    let player2Count = parseInt(localStorage.getItem('player1_score'));
-    let gamesPlayed = parseInt(localStorage.getItem('gamesPlayed'));
-    console.log('Read before assign storage');
-    console.log(parseInt(localStorage.getItem('player1_score')));
-    console.log(parseInt(localStorage.getItem('player2_score')));
-    console.log(parseInt(localStorage.getItem('gamesPlayed')));
-    console.log(`MultiGameStore BEFORE storage `);
-    console.log(game.multiGameStore);
-    console.log(
-        `Local storage Before function: Gamesplayed: ${gamesPlayed}, Player 1: ${player1Count}, Player 2: ${player2Count}.`
-    );
-    // //Assign Score
-    if (game.player1Plus > 0) {
-        gamesPlayed++;
-        player1Count = player1Count + game.player1Plus;
-        localStorage.setItem('player1_score', player1Count);
-        localStorage.setItem('player2_score', player2Count);
-        localStorage.setItem('gamesPlayed', gamesPlayed);
-        return;
-    }
-    if (game.player2Plus > 0) {
-        gamesPlayed++;
-        player2Count = player2Count + game.player2Plus;
-        localStorage.setItem('player1_score', player1Count);
-        localStorage.setItem('player2_score', player2Count);
-        localStorage.setItem('gamesPlayed', gamesPlayed);
-        return;
-    }
-
-    console.log(
-        `Local storage After function: Gamesplayed: ${gamesPlayed}, Player 1: ${player1Count}, Player 2: ${player2Count}.`
-    );
-    // //Assign Storage
-
-    console.log('Read after assign storage');
-    console.log(parseInt(localStorage.getItem('player1_score')));
-    console.log(parseInt(localStorage.getItem('player2_score')));
-    console.log(parseInt(localStorage.getItem('gamesPlayed')));
-    // game.multiGameStoreUpdate();
-    console.log(`MultiGameStore AFTER storage`);
-    console.log(game.multiGameStore);
-};
 
 // Rest the boolean and currentPlayer
 const resetPlayAgain = (game) => {

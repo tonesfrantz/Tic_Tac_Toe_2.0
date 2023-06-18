@@ -4,7 +4,7 @@ export const buttonListener = (game) => {
         const currentPLayerScreen = document.getElementById('currentPlayer');
 
         button.addEventListener('click', () => {
-            console.log(`This is button ${i}`);
+            // console.log(`This is button ${i}`);
             //player swap
             if (
                 game.currentPlayer == game.player[2] ||
@@ -21,10 +21,10 @@ export const buttonListener = (game) => {
                 storePlayerInput(game, i);
             }
             game.currentPlayerToggle();
-            console.log(`Event listener Boolean ${game.playerBoolean}`);
+            // console.log(`Event listener Boolean ${game.playerBoolean}`);
             game.check_win();
             // console.log(game.playerInput);
-            console.log(`Current Player: ${game.currentPlayer}`);
+            // console.log(`Current Player: ${game.currentPlayer}`);
         });
     }
 };
@@ -46,6 +46,6 @@ export const storePlayerInput = (game, buttonID) => {
         game.playerInput[4][buttonID - 1 - game.gameSize * 4] =
             game.currentPlayer;
     }
-    console.log(`Current player: ${game.currentPlayer}`);
-    console.log(`Player Input: ${game.playerInput}`);
+    // console.log(`Current player: ${game.currentPlayer}`);
+    // console.log(`Player Input: ${game.playerInput}`);
 };

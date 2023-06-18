@@ -54,9 +54,11 @@ export const playAgainButton = (game) => {
         playAgainModule.innerHTML = '';
         game.player1Plus = 0;
         game.player2Plus = 0;
-        console.log('Read after REPLAY BUTTON storage');
-        console.log(parseInt(localStorage.getItem('player1_score')));
-        console.log(parseInt(localStorage.getItem('player2_score')));
-        console.log(parseInt(localStorage.getItem('gamesPlayed')));
+        // console.log('Read after REPLAY BUTTON storage');
+        // console.log(parseInt(localStorage.getItem('player1_score')));
+        // console.log(parseInt(localStorage.getItem('player2_score')));
+        // console.log(parseInt(localStorage.getItem('gamesPlayed')));
+        // console.log(`Game Player 1: ${game.player1Plus}`);
+        // console.log(`Game Player 2: ${game.player2Plus}`);
     });
 };
