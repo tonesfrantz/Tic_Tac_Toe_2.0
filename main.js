@@ -106,9 +106,11 @@ const game = {
     playerBoolean: false,
     player1Plus: 0,
     player1Plus: 0,
+    gameLog: [],
     currentPlayerToggle: function () {
         (this.playerBoolean = !this.playerBoolean) ? false : true;
     },
+
     playerInput: [],
     check_win: function () {
         console.log(`Before win: ${this.playerBoolean}`);
