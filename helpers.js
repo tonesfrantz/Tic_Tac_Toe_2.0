@@ -63,7 +63,3 @@ export const diagonalArrays = (array) => {
     let reshuffleDiagonal = [reshuffleDiagonal1, reshuffleDiagonal2];
     return reshuffleDiagonal;
 };
-// 2 Diagonals
-// Loops length down to zero
-// For problem solving write two seerate loops.
-// Could write two funtions and test for each diagonal.

@@ -1,7 +1,3 @@
-// import { createGameButtons } from './create';
-
-//import { buttonListener } from './eventListener';
-
 export const playAgain = (game) => {
     game.multiGameStoreUpdate();
     const playAgainModule = document.getElementById('playAgain');
@@ -15,10 +11,8 @@ export const playAgain = (game) => {
         let playerScore = [];
         if (i == 1) {
             playerIcon = game.player[1];
-            //playerScore = parsInt(localStorage.getItem('player1'));
         } else {
             playerIcon = game.player[2];
-            //playerScore = parsInt(localStorage.getItem('player2'));
         }
 
         selectModule += `<div id="player${i}" class="playerResults">Player ${i} - ${
@@ -28,37 +22,69 @@ export const playAgain = (game) => {
     selectModule += `<div id="gamesPlayed" class="playerResults">Games Played: ${localStorage.getItem(
         'gamesPlayed'
     )}</div>`;
-    selectModule += `<div id="resetGame" class="playerResults reset">Reset</div>`;
-    selectModule += `<div id="playAgain" class="playerResults reset">Play Again</div>`;
+    selectModule += `<div id="winner" class="playerResults">Winner: ${localStorage.getItem(
+        'winner'
+    )}</div>`;
+    selectModule += `<div id="playAgainButton" class="playerResults reset">Play Again</div>`;
+    selectModule += `<div id="resetGameButton" class="playerResults reset">Reset</div>`;
     moduleChilren.innerHTML = selectModule;
 };
 
-// export const resetPlayAgainScreen = () => {
-//     const playAgainModule = document.getElementById('playAgain');
-
-// };
-
-// function removeAllChildNodes(parent) {
-//     while (parent.firstChild) {
-//         parent.removeChild(parent.firstChild);
-//     }
-// }
-// const container = document.querySelector('#container');
-// removeAllChildNodes(container);
-
 export const playAgainButton = (game) => {
-    let PAButton = document.getElementById('playAgain');
+    game.multiGameStoreUpdate();
+    let PAButton = document.getElementById('playAgainButton');
+
     PAButton.addEventListener('click', () => {
         let playAgainModule = document.getElementById('playAgain');
+
         playAgainModule.style.display = 'none';
         playAgainModule.innerHTML = '';
         game.player1Plus = 0;
         game.player2Plus = 0;
-        // console.log('Read after REPLAY BUTTON storage');
-        // console.log(parseInt(localStorage.getItem('player1_score')));
-        // console.log(parseInt(localStorage.getItem('player2_score')));
-        // console.log(parseInt(localStorage.getItem('gamesPlayed')));
-        // console.log(`Game Player 1: ${game.player1Plus}`);
-        // console.log(`Game Player 2: ${game.player2Plus}`);
     });
 };
+
+export const resetGameButton = (game) => {
+    game.multiGameStoreUpdate();
+    let resetButton = document.getElementById('resetGameButton');
+    const playAgainModule = document.getElementById('playAgain');
+    const playerSelectionModule = document.getElementById('selectModule');
+    resetButton.addEventListener('click', () => {
+        fadeOut(playAgainModule);
+        fadeIn(playerSelectionModule);
+        resetGameComplete();
+    });
+};
+function fadeOut(element) {
+    var op = 1; // initial opacity
+    var timer = setInterval(function () {
+        if (op <= 0.1) {
+            clearInterval(timer);
+            element.style.display = 'none';
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ')';
+        op -= op * 0.1;
+    }, 60);
+}
+function fadeIn(element) {
+    var op = 0.1; // initial opacity
+    element.style.display = 'block';
+    var timer = setInterval(function () {
+        if (op >= 1) {
+            clearInterval(timer);
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ')';
+        op += op * 0.1;
+    }, 20);
+    // if ((element.style.opacity = 0.9)) {
+    //     resetGameComplete();
+    // }
+}
+
+function resetGameComplete() {
+    setInterval(function () {
+        window.location = window.location.href + '?eraseCache=true';
+    }, 1050);
+}

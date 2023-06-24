@@ -1,5 +1,6 @@
 //Create the DOM for Module and Game
 export const createGameButtons = (game) => {
+    game.multiGameStoreUpdate();
     const body = document.getElementById('main');
     const players = document.getElementById('players');
     var buttonDivHTML = '';
@@ -14,8 +15,6 @@ export const createGameButtons = (game) => {
     }
     playerDivHTML += `</br><div id="currentPlayer">Most Recent Move${game.currentPlayer}</div>`;
     players.innerHTML = playerDivHTML;
-    // console.log(`playerboolean - createFunction ${game.playerBoolean}`);
-    // game.multiGameStoreUpdate();
 };
 
 // Module which will disappear after players selected
@@ -48,8 +47,6 @@ export const avatarButton = (game) => {
 };
 
 const emojiAPICall = (game, requestGroup, gamePlayer, elementToChange) => {
-    // Have to work on this AJAX request and the SYNTAX
-    // let requestGroup = 'smileys_emotion';
     let randomEmoji = Math.floor(Math.random() * 31);
     fetch(`https://api.api-ninjas.com/v1/emoji?group=${requestGroup}`, {
         method: 'GET',
@@ -59,7 +56,7 @@ const emojiAPICall = (game, requestGroup, gamePlayer, elementToChange) => {
     })
         .then((response) => response.json())
         .then()
-        // Alyways use curly brackets in arrow function
+
         .then((result) => {
             console.log(
                 (game.player[gamePlayer] = result[randomEmoji].character)
@@ -67,17 +64,8 @@ const emojiAPICall = (game, requestGroup, gamePlayer, elementToChange) => {
             elementToChange.innerHTML = `Player ${gamePlayer} Select Avatar <br/>${game.player[gamePlayer]}`;
         })
         .catch((error) => console.error(error));
-    // setTimeout(applyPlayer1, 1500);
-    // function applyPlayer1() {
-    //     elementToChange.innerHTML = `Player ${gamePlayer} Select Avatar <br/>${game.player[gamePlayer]}`;
-    // }
 };
 
-//Notes for Functionality:
-// Writie
-
-// Do you have to clear local storage before setting?
-// The setting of local storage and retreiving may need to be put in a function that can be called.
 export const startGame = (game) => {
     let startButton = document.getElementById('startPlay');
     let moduleClass = document.getElementById('selectModule');
