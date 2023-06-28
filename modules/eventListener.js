@@ -15,7 +15,7 @@ export const buttonListener = (game) => {
                 ) {
                     button.innerHTML = game.player[1];
                     game.currentPlayer = game.player[1];
-                    currentPLayerScreen.innerHTML = `Most Recent Move - Player: ${game.currentPlayer}`;
+                    currentPLayerScreen.innerHTML = `Most Recent Player: ${game.currentPlayer}`;
                     storePlayerInput(game, i, j);
                 } else if (
                     game.currentPlayer == game.player[1] ||
@@ -23,7 +23,7 @@ export const buttonListener = (game) => {
                 ) {
                     button.innerHTML = game.player[2];
                     game.currentPlayer = game.player[2];
-                    currentPLayerScreen.innerHTML = `Most Recent Move - Player: ${game.currentPlayer}`;
+                    currentPLayerScreen.innerHTML = `Most Recent Player: ${game.currentPlayer}`;
                     storePlayerInput(game, i, j);
                 }
                 game.currentPlayerToggle();

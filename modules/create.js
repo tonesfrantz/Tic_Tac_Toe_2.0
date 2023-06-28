@@ -13,7 +13,7 @@ export const createGameButtons = (game) => {
     for (let j = 1; j <= 2; j++) {
         playerDivHTML += `<div id="player${j}" class="player">Player ${j} ${game.player[j]} -  Score: ${game.multiGameStore.score[j]}</div>`;
     }
-    playerDivHTML += `</br><div id="currentPlayer">Most Recent Move${game.currentPlayer}</div>`;
+    playerDivHTML += `</br><div id="currentPlayer">Most Recent Player${game.currentPlayer}</div>`;
     players.innerHTML = playerDivHTML;
 };
 
