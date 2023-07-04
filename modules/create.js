@@ -3,15 +3,15 @@ export const createGameButtons = (game) => {
     game.multiGameStoreUpdate();
     const body = document.getElementById('main');
     const players = document.getElementById('players');
-    var buttonDivHTML = '';
+    let buttonDivHTML = '';
     for (let i = 0; i < game.gameSize * game.gameSize; i++) {
         // Create id with name 'button' and number
         buttonDivHTML += `<div id="${i + 1}" class="button">&#11035;</div>`;
     }
     body.innerHTML = buttonDivHTML;
-    var playerDivHTML = '';
+    let playerDivHTML = '';
     for (let j = 1; j <= 2; j++) {
-        playerDivHTML += `<div id="player${j}" class="player">Player ${j} ${game.player[j]} -  Score: ${game.multiGameStore.score[j]}</div>`;
+        playerDivHTML += `<div id="player${j}" class="player">Player ${j} ${game.multiGameStore.player[j]} -  Score: ${game.multiGameStore.score[j]}</div>`;
     }
     playerDivHTML += `</br><div id="currentPlayer">Most Recent Player${game.currentPlayer}</div>`;
     players.innerHTML = playerDivHTML;
@@ -24,10 +24,10 @@ export const createPlayerSelection = (game) => {
     const moduleChilren = document.createElement('div');
     moduleChilren.setAttribute('id', 'selectModuleChild');
     playerSelectionModule.appendChild(moduleChilren);
-    var selectModule = `<h1 id="moduleHeader">Tic Tac Toe</h1>`;
+    let selectModule = `<h1 id="moduleHeader">Tic Tac Toe</h1>`;
     // Select avatar buttons
     for (let i = 1; i <= playerNo; i++) {
-        selectModule += `<div id="playerAvatar${i}" class="selectAvatar">Player ${i} Select Avatar <br/>${game.player[i]}</div>`;
+        selectModule += `<div id="playerAvatar${i}" class="selectAvatar">Player ${i} Select Avatar <br/>${game.multiGameStore.player[i]}</div>`;
     }
     // Start Play
     selectModule += `<div id="startPlay" class="selectAvatar">START PLAY</div>`;
@@ -36,8 +36,8 @@ export const createPlayerSelection = (game) => {
 
 // Select Emoji from the API
 export const avatarButton = (game) => {
-    let player1RandomAvatar = document.getElementById('playerAvatar1');
-    let player2RandomAvatar = document.getElementById('playerAvatar2');
+    const player1RandomAvatar = document.getElementById('playerAvatar1');
+    const player2RandomAvatar = document.getElementById('playerAvatar2');
     player1RandomAvatar.addEventListener('click', () => {
         emojiAPICall(game, 'smileys_emotion', 1, player1RandomAvatar);
     });
@@ -55,30 +55,33 @@ const emojiAPICall = (game, requestGroup, gamePlayer, elementToChange) => {
         },
     })
         .then((response) => response.json())
-        .then()
+        // .then()
 
         .then((result) => {
             console.log(
-                (game.player[gamePlayer] = result[randomEmoji].character)
+                (game.multiGameStore.player[gamePlayer] =
+                    result[randomEmoji].character)
             );
-            elementToChange.innerHTML = `Player ${gamePlayer} Select Avatar <br/>${game.player[gamePlayer]}`;
+            console.log(game.multiGameStore);
+            elementToChange.innerHTML = `Player ${gamePlayer} Select Avatar <br/>${game.multiGameStore.player[gamePlayer]}`;
+            game.currentPlayerEmoji();
         })
         .catch((error) => console.error(error));
 };
 
 export const startGame = (game) => {
-    let startButton = document.getElementById('startPlay');
-    let moduleClass = document.getElementById('selectModule');
-    let player1 = document.getElementById('player1');
-    let player2 = document.getElementById('player2');
+    const startButton = document.getElementById('startPlay');
+    const moduleClass = document.getElementById('selectModule');
+    const player1 = document.getElementById('player1');
+    const player2 = document.getElementById('player2');
     startButton.addEventListener('click', () => {
         localStorage.setItem('player1_score', 0);
         localStorage.setItem('player2_score', 0);
-        localStorage.setItem('player1', game.player[1]);
-        localStorage.setItem('player2', game.player[2]);
+        localStorage.setItem('player1', game.multiGameStore.player[1]);
+        localStorage.setItem('player2', game.multiGameStore.player[2]);
         localStorage.setItem('gamesPlayed', 0);
-        player1.innerHTML = `Player 1 ${game.player[1]} Score: ${game.multiGameStore.score[1]}`;
-        player2.innerHTML = `Player 2 ${game.player[2]} Score: ${game.multiGameStore.score[2]}`;
+        player1.innerHTML = `Player 1 ${game.multiGameStore.player[1]} Score: ${game.multiGameStore.score[1]}`;
+        player2.innerHTML = `Player 2 ${game.multiGameStore.player[2]} Score: ${game.multiGameStore.score[2]}`;
         moduleClass.style.display = 'none';
         console.log(game.multiGameStore);
     });

@@ -1,8 +1,8 @@
 export const localStorageIncrease = (game) => {
     // // Get stored Data
-    let player1Count = parseInt(localStorage.getItem('player1_score'));
-    let player2Count = parseInt(localStorage.getItem('player2_score'));
-    let gamesPlayed = parseInt(localStorage.getItem('gamesPlayed'));
+    const player1Count = parseInt(localStorage.getItem('player1_score'));
+    const player2Count = parseInt(localStorage.getItem('player2_score'));
+    const gamesPlayed = parseInt(localStorage.getItem('gamesPlayed'));
     // let player1 = parseInt(localStorage.getItem('player1'));
     // //Assign Score
     // console.log(`LocalStorageOUTSIDEIFBE-FOREIncrease P1: ${player1Count}`);

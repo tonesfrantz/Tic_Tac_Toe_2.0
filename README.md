@@ -12,7 +12,3 @@ A TIc Tac Toe Game build in the DOm using Javascript
 -   Switch player logic
 -   Reset
 -   Keep score over multiple games (Browser Memory)
-
-
-
-

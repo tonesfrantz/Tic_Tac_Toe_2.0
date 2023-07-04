@@ -6,28 +6,31 @@ export const buttonListener = (game) => {
                 document.getElementById('currentPlayer');
 
             button.addEventListener('click', () => {
+                game.currentPlayerEmoji();
                 console.log(game.multiGameStore);
-                if (game.playerInput[i][j] != undefined) {
+                if (game.playerInput[i][j] !== undefined) {
                     return;
                 } else if (
-                    game.currentPlayer == game.player[2] ||
-                    game.currentPlayer == ''
+                    // game.currentPlayer == game.multiGameStore.player[2] ||
+                    // game.currentPlayer == ''
+                    game.playerBoolean === false
                 ) {
-                    button.innerHTML = game.player[1];
-                    game.currentPlayer = game.player[1];
-                    currentPLayerScreen.innerHTML = `Most Recent Player: ${game.currentPlayer}`;
+                    button.innerHTML = game.multiGameStore.player[1];
+                    // game.currentPlayer = game.multiGameStore.player[1];
+                    currentPLayerScreen.innerHTML = `Most Recent Player: ${game.multiGameStore.currentPlayer}`;
                     storePlayerInput(game, i, j);
                 } else if (
-                    game.currentPlayer == game.player[1] ||
-                    game.currentPlayer == ''
+                    // game.currentPlayer == game.multiGameStore.player[1] ||
+                    // game.currentPlayer == ''
+                    game.playerBoolean === true
                 ) {
-                    button.innerHTML = game.player[2];
-                    game.currentPlayer = game.player[2];
-                    currentPLayerScreen.innerHTML = `Most Recent Player: ${game.currentPlayer}`;
+                    button.innerHTML = game.multiGameStore.player[2];
+                    // game.currentPlayer = game.multiGameStore.player[2];
+                    currentPLayerScreen.innerHTML = `Most Recent Player: ${game.multiGameStore.currentPlayer}`;
                     storePlayerInput(game, i, j);
                 }
-                game.currentPlayerToggle();
                 game.check_win();
+                game.currentPlayerToggle();
 
                 for (let i = 0; i < game.playerInput.length; i++) {
                     for (let j = 0; j < game.playerInput[i].length; j++) {
@@ -41,7 +44,7 @@ export const buttonListener = (game) => {
                 const checkUndefined = (gameLog) => {
                     const playAgainModule =
                         document.getElementById('playAgain');
-                    if (gameLog != undefined) {
+                    if (gameLog !== undefined) {
                         // playAgainModule.style.display = 'block';
                     }
                 };
@@ -56,6 +59,6 @@ export const storePlayerInput = (game, i, j) => {
     if (game.playerInput[i][j] != undefined) {
         return;
     } else {
-        game.playerInput[i][j] = game.currentPlayer;
+        game.playerInput[i][j] = game.multiGameStore.currentPlayer;
     }
 };

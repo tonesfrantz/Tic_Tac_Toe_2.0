@@ -1,4 +1,4 @@
-export const gameStore = {
+export const gameStoreArray = {
     newGame: function (game) {
         for (let i = 0; i < game.gameSize; i++) {
             game.playerInput[i] = [];
