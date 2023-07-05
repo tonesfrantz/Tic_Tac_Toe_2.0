@@ -11,7 +11,7 @@ export const gameStoreArray = {
                 // console.log(`Console Log: i & j:${i}, ${j}`);
             }
         }
-        console.log(game.playerInput);
-        console.log(`Current Player: ${game.currentPlayer}`);
+        // console.log(game.playerInput);
+        // console.log(`Current Player: ${game.currentPlayer}`);
     },
 };

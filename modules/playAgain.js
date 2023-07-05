@@ -15,32 +15,25 @@ export const playAgain = (game) => {
             playerIcon = game.multiGameStore.player[2];
         }
 
-        selectModule += `<div id="player${i}" class="playerResults">Player ${i} - ${
-            game.multiGameStore.player[i]
-        } Score: ${localStorage.getItem(`player${[i]}_score`)}</div>`;
+        selectModule += `<div id="player${i}" class="playerResults">Player ${i} - ${game.multiGameStore.player[i]} Score: ${game.multiGameStore.score[i]}</div>`;
     }
-    selectModule += `<div id="gamesPlayed" class="playerResults">Games Played: ${localStorage.getItem(
-        'gamesPlayed'
-    )}</div>`;
-    selectModule += `<div id="winner" class="playerResults">Winner: ${localStorage.getItem(
-        'winner'
-    )}</div>`;
+    selectModule += `<div id="gamesPlayed" class="playerResults">Games Played: ${game.multiGameStore.gamesPlayed}</div>`;
+    selectModule += `<div id="winner" class="playerResults">Winner: ${game.multiGameStore.winner}</div>`;
     selectModule += `<div id="playAgainButton" class="playerResults reset">Play Again</div>`;
     selectModule += `<div id="resetGameButton" class="playerResults reset">Reset</div>`;
     moduleChilren.innerHTML = selectModule;
 };
 
 export const playAgainButton = (game) => {
-    game.multiGameStoreUpdate();
     const PAButton = document.getElementById('playAgainButton');
-
     PAButton.addEventListener('click', () => {
         const playAgainModule = document.getElementById('playAgain');
-
         playAgainModule.style.display = 'none';
         playAgainModule.innerHTML = '';
-        game.player1Plus = 0;
-        game.player2Plus = 0;
+        game.multiGameStore.currentPlay = game.multiGameStore.player[1];
+        game.multiGameStoreUpdate();
+        // game.player1Plus = 0;
+        // game.player2Plus = 0;
     });
 };
 

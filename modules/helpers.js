@@ -43,7 +43,7 @@ export const verticalArrays = (array) => {
             let value = array[j][i];
             reshuffleVertile[i].push(value);
         }
-        console.log(reshuffleVertile);
+        // console.log(reshuffleVertile);
     }
     return reshuffleVertile;
 };
