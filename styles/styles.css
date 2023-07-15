@@ -7,13 +7,14 @@
     font-size: 16px;
 }
 
+
 body{
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
     margin: 0;
     background-color: rgb(169, 177, 153);
     font-family: 'Courier New', Courier, monospace;
     text-size-adjust:auto;
-    height: 100dvh; 
+    height: 100%; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -272,6 +273,7 @@ header{
         }
 
         #playAgainChild {
+            overflow: scroll;
             padding: 2rem;
             display: flex;
             flex-direction: column;
